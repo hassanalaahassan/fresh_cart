@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-8 mx-auto">
+    <div class="inner">
+      <form [formGroup]="paymentForm">
+        <div>
+          <label for="detailes">Details</label>
+          <input type="text" name="detailes" id="detailes" class="form-control my-2" formControlName="detailes">
+          <div class="alert alert-danger" *ngIf="this.paymentForm.get('detailes')?.touched && this.paymentForm.get('detailes')?.errors ">
+            <p class="m-0 p-0" *ngIf="this.paymentForm.get('detailes')?.getError('required') ">
+              This failed is required
+            </p>
+          </div>
+        </div>
+        <div>
+          <label for="phone">Phone</label>
+          <input type="tel" name="phone" id="phone" class="form-control my-2" formControlName="phone">
+          <div class="alert alert-danger" *ngIf="this.paymentForm.get('phone')?.touched && this.paymentForm.get('phone')?.errors ">
+            <p class="m-0 p-0" *ngIf="this.paymentForm.get('phone')?.getError('required') ">
+              This failed is required
+            </p>
+            <p class="m-0 p-0" *ngIf="this.paymentForm.get('phone')?.getError('pattern') ">
+              Only accept Egyption number
+            </p>
+          </div>
+        </div>
+        <div>
+          <label for="city">City</label>
+          <input type="text" name="city" id="city" class="form-control my-2" formControlName="city">
+          <div class="alert alert-danger" *ngIf="this.paymentForm.get('city')?.touched && this.paymentForm.get('city')?.errors ">
+            <p class="m-0 p-0" *ngIf="this.paymentForm.get('city')?.getError('required') ">
+              This failed is required
+            </p>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <button [disabled]="this.paymentForm.invalid" class="main-btn" (click)="paymentByVisa()">
+            <span *ngIf="!isVisa">Visa</span>
+            <span *ngIf="isVisa"><i class="fa fa-spin fa-spinner"></i></span>
+          </button>
+          <button [disabled]="this.paymentForm.invalid" class="main-btn" (click)="paymentByCash()">
+            <span *ngIf="!isCash">Cash</span>
+            <span *ngIf="isCash"><i class="fa fa-spin fa-spinner"></i></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand text-capitalize" routerLink="home"><img src="assets/images/freshcart-logo.svg" alt=""></a>
+  <button
+    class="navbar-toggler d-lg-none"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapsibleNavId"
+    aria-controls="collapsibleNavId"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  ></button>
+  <div class="collapse navbar-collapse" id="collapsibleNavId">
+    <div>
+      <ul class="navbar-nav me-auto mt-2 mt-lg-0 text-capitalize">
+        <li class="nav-item ">
+          <a class="nav-link m-md-0 m-2" routerLinkActive="active-link" routerLink="home">home</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link m-md-0 m-2" routerLinkActive="active-link" routerLink="/cart">cart</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link m-md-0 m-2" routerLinkActive="active-link" routerLink="/products">products</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link m-md-0 m-2" routerLinkActive="active-link" routerLink="/categories">categories</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active-link" routerLink="/brands">brands</a>
+        </li> -->
+        <div class="btn-group ms-0 ms-lg-2 w-25 my-2 my-lg-0">
+          <button class="btn btn-secondary btn-sm" type="button">
+            More
+          </button>
+          <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="visually-hidden"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active-link" routerLink="/Wish-List">Wish list</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active-link" [routerLink]="['/payments',id]">payment</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active-link" routerLink="/allorders">orders</a>
+            </li>
+          </ul>
+        </div>
+      </ul>
+    </div>
+
+
+    <div class="social-icon d-flex justify-content-center align-items-center ms-auto">
+      <div class="heart position-relative mx-2" routerLink="/Wish-List">
+        <a routerLink="/Wish-List">
+         <i class="fa-solid fa-heart fs-5 text-danger"></i>
+         <div class="badge position-absolute bottom-50 start-100 bg-danger">{{wishCount}}</div>
+        </a>
+      </div>
+      <div routerLink="/cart" class="cart mx-4 position-relative">
+        <a routerLink="/cart">
+         <i class="fa-solid fa-cart-shopping green-text fs-5"></i>
+         <div class="badge position-absolute bottom-50 start-100 bg-green">{{cartNumber}}</div>
+        </a>
+      </div>
+      <a href="https://www.instagram.com/hassanalaa3956/?hl=ar" target="_blank"><i class="fa-brands fa-instagram" ></i></a>
+      <a href="https://www.facebook.com/hassan.alaa.92123?locale=ar_AR" target="_blank"><i class="fa-brands fa-facebook" ></i></a>
+      <a href=""><i class="fa-brands fa-tiktok" ></i></a>
+      <a href=""><i class="fa-brands fa-twitter" ></i></a>
+      <a href="www.linkedin.com/in/hassan-alaa-77907729b" target="_blank"><i class="fa-brands fa-linkedin" ></i></a>
+      <a href=""><i class="fa-brands fa-youtube" ></i></a>
+
+      <button class="btn" (click)="logOut()">SignOut</button>
+    </div>
+  </div>
+  </div>
+</nav>
+
+<!-- <div class="layer bg-black bg-opacity-50 row">
+
+  <p class="h4 text-white">First 5 products added</p>
+<div class="col-12" *ngFor="let fave of myList.slice(0,4)">
+  <div class="inner">
+    <img [src]="fave.imageCover" class="w-100 rounded-2" height="300" alt="fave.title">
+    <div class="d-flex align-items-center justify-content-between">
+    <p class="green-text">{{fave.title|splitPro}}</p>
+    <p class="text-white">{{fave.price}} EGP</p>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between align-items-center">
+
+  <button class="main-btn" (click)="addToCart(fave._id)">Add To cart</button>
+  <button class="btn btn-danger p-2 rounded-3" (click)="this.removeProductFromWishList(fave._id)">Remove</button>
+  </div>
+  <hr>
+</div>
+</div> -->
+

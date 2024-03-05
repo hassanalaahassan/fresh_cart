@@ -1,0 +1,33 @@
+<div class="row g-4 my-5">
+    <div class="col-12" *ngIf="errMessage && myList.length==0">
+      <div class="alert text-center alert-danger">
+        <p class="m-0 p-0">{{errMessage}}</p>
+      </div>
+    </div>
+  <div class="col-md-2" *ngFor="let item of myList">
+    <div class="inner shadow-sm p-2">
+    <div [routerLink]="['/detailes',item._id]" class=" ">
+      <img [src]="item.imageCover" class="w-100 rounded-4" [alt]="item.title">
+      <h3 class="h5 green-text">{{item.title|splitPro}}</h3>
+      <p>{{  item.category.name }}</p>
+      <div class="d-flex justify-content-between align-items-center my-1">
+        <span class=" fw-bold">{{item.price}} EGP</span>
+        <div>
+          <i class="fa-solid fa-star reating me-1"></i>
+          <span class="text-muted">{{item.ratingsAverage}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+      <button class="main-btn me-auto w-75" (click)="addToCart(item._id)">Add To cart</button>
+      <div class="Fav ms-auto">
+        <div class="remove" (click)="removeProductFromWishList(item._id)">
+
+          <label for="remove"><i class="fa-solid fa-heart text-danger"></i></label>
+        </div>
+
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

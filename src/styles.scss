@@ -1,1 +1,64 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&family=Roboto:wght@100;300;400;500;700&display=swap');
+$greenColor: #48cb3e;
+$grayColor: #ffffffa2;
+$reatingColor:gold;
+$main-transtion:.8s;
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
+.font-rajd{
+  font-family: 'Rajdhani', sans-serif;
+}
+.reating{
+  color: $reatingColor;
+}
+.main-btn{
+  padding: 8px 12px;
+  color:white;
+  background-color: $greenColor;
+  border: unset;
+  border-radius: 8px;
+  cursor: pointer;
+  &:disabled{
+    background-color: rgba(65, 184, 65, 0.516);
+    color: rgba(255, 255, 255, 0.515);
+    cursor: not-allowed;
+  }
+}
+.active-link{
+  color: white!important;
+  background-color: $greenColor!important;
+  border-radius: 5px;
+}
+.green-text{
+  color: $greenColor;
+}
+.bg-light{
+  background-color: $grayColor;
+}
+.social-icon >*{
+
+  margin-left: 12px;
+
+
+}
+.social-icon{
+  a{
+    color: black;
+  }
+}
+.my-card{
+  border: $greenColor;
+
+}
+::selection{
+  color:$greenColor;
+}
+
+.bg-green{
+  background-color: $greenColor;
+}
+body{
+  overflow-x: hidden;
+}

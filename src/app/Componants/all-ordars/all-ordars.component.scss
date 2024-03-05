@@ -1,0 +1,14 @@
+.data{
+ position: absolute;
+ top: 50%;
+ right: 50%;
+ transform: translate(50%,0%);
+ display: none;
+ opacity: 0;
+ transition:.5s all;
+}
+
+.hovData:hover .data{
+    display: flex;
+    opacity: 1;
+}

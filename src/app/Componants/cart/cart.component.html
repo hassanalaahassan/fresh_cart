@@ -1,0 +1,44 @@
+<div class="row" *ngIf="!clearMessage && productList.length>0">
+<div class="head col-12">
+  <div class="inner p-3">
+    <div class="d-flex justify-content-between ">
+      <p class="green-text fw-bold">Number of cart items : <span class="fw-light">{{(productList|filterList).length}}</span></p>
+      <p class="green-text fw-bold">Total price = <span class="fw-light">{{totalCartPrice}}EGP</span></p>
+    </div>
+    <button class="btn btn-outline-danger d-block ms-auto" (click)="clearCart()">Clear cart</button>
+  </div>
+</div>
+<div class="product" *ngFor="let productItem of productList|filterList">
+  <div class="d-flex p-2 my-2 shadow-sm justify-content-center">
+    <div class="col-1">
+      <div class="inner">
+        <img [src]="productItem.product.imageCover" class="w-100" alt="">
+      </div>
+    </div>
+    <div class="col-11">
+      <div class="inner d-flex justify-content-between p-3">
+        <div class="data-of-product">
+        <p class="fw-bold">{{productItem.product.title}}</p>
+        <p>price : {{productItem.price}} </p>
+        <span role="button" class="text-danger" (click)="removeProduct(productItem.product.id)"> Remove product <i class=" ms-1 fa fa-trash"></i></span>
+        </div>
+        <div class="count">
+          <button class="btn cart-button" (click)="updateCart(productItem.product.id,(productItem.count+1))">+</button>
+                  <span class="px-2">{{productItem.count}}</span>
+          <button class="btn cart-button" (click)="updateCart(productItem.product.id,(productItem.count-1))">-</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-3">
+  <button class="my-3 cart-button btn" [routerLink]="['/payments',cartId]">Pay</button>
+</div>
+</div>
+<div class="row" *ngIf="clearMessage && productList.length==0">
+  <div class="conatiner">
+    <div class="alert alert-danger text-center p-3">
+      {{clearMessage}}
+    </div>
+  </div>
+</div>

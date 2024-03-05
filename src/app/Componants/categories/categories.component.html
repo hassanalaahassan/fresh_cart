@@ -1,0 +1,12 @@
+<div class="row my-5">
+  <h2 class="green-text">All category</h2>
+  <div class="col-md-2 my-md-1 my-3" *ngFor="let cat of categoryList">
+    <div [routerLink]="['/prodsOfCategory',cat._id]"  class="inner w-100 h-100 overflow-hidden position-relative">
+      <img [src]="cat.image" class="w-100 rounded-3" alt="cat.name" height="250">
+      <div class="layer rounded-3 d-flex justify-content-center align-items-center">
+        <h4>{{cat.name}}</h4>
+      </div>
+    </div>
+  </div>
+</div>
+

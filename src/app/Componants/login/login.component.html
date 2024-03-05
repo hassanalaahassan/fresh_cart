@@ -1,0 +1,28 @@
+<section>
+  <div class="inner w-75 mx-auto">
+    <h2 class="text-center">Welcome in FreshCart</h2>
+    <h3 class="h6">Login now </h3>
+    <form [formGroup]="login" (submit)="handelLogin()">
+      <div class="form-item">
+        <label for="email">E-mail</label>
+        <input type="email" name="email" id="email" class="form-control" formControlName="email">
+        <div class="alert alert-danger" *ngIf="this.login.get('email')?.touched && this.login.get('email')?.errors">
+          <p *ngIf="this.login.get('email')?.getError('required')">Email is required</p>
+          <p *ngIf="this.login.get('email')?.getError('email')">Email is invalid</p>
+        </div>
+      </div>
+      <div class="form-item">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" class="form-control" formControlName="password">
+        <div class="alert alert-danger" *ngIf="this.login.get('password')?.touched && this.login.get('password')?.errors">
+          <p *ngIf="this.login.get('password')?.getError('required')">Password is required</p>
+          <p *ngIf="this.login.get('password')?.getError('pattern')">Password is required</p>
+        </div>
+      </div>
+      <button type="submit" class="main-btn mt-2"><span *ngIf="!isLoading">Login</span>
+        <span *ngIf="isLoading"><i class="fa fa-spin fa-spinner"></i></span>
+      </button>
+      <span role="button" routerLink="/forget-password" class="mt-2 d-block">Forget your password ?</span>
+    </form>
+  </div>
+</section>
