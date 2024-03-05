@@ -15,7 +15,7 @@ export class PaymentService {
     }
 
   visa(data:Payment,id:string|null):Observable<any>{
-    return this._HttpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${id}?url=http://localhost:4200`,
+    return this._HttpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${id}?url=https://hassanalaahassan.github.io/freshCart/`,
     {shippingAddress:data},
     {headers:this.header}
     )
