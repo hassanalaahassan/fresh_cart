@@ -3,7 +3,6 @@
     <th>Delivered</th>
     <th>Paid</th>
     <th>payment Method</th>
-    <th>Order Detailes</th>
     <th> Price </th>
   </thead>
   <tbody class=" position-relative">
@@ -11,19 +10,6 @@
       <td><i *ngIf="!order.isDelivered" class="fa-solid fa-xmark text-danger"></i><i *ngIf="order.isDelivered" class="fa-solid fa-check green-text"></i></td>
       <td><i *ngIf="!order.isPaid" class="fa-solid fa-xmark text-danger"></i><i *ngIf="order.isPaid" class="fa-solid fa-check green-text"></i></td>
       <td class=" text-success">{{order.paymentMethodType}}</td>
-      <td class=" text-success hovData">More Detailes<i class="fa-solid fa-arrow-right ms-1"></i>
-        <div class=" data w-100">
-        <div class="rounded-2 text-white bg-dark  flex-wrap" *ngFor="let item of productList; let i=index">
-          <div class=" d-flex justify-content-center align-items-center p-3 w-25" *ngFor="let product of item">
-            <img [src]="product.product.imageCover" class="w-50" alt="">
-            <div class="ms-2">
-              <span> product: {{product.product.title}} </span>
-              <span>price: {{product.price}}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </td>
       <td class=" text-success">{{order.totalOrderPrice}} EGP</td>
     </tr>
 
