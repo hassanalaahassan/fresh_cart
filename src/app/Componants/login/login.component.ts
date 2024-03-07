@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup,Validators,FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/app/Services/login.service';
 
 @Component({
@@ -12,8 +13,7 @@ export class LoginComponent {
 
 
   isLoading:boolean=false
-
-  constructor(private _Login:LoginService , private _router:Router){}
+  constructor(private _Login:LoginService , private _router:Router,private _Toastr:ToastrService){}
 
 
 
@@ -33,9 +33,16 @@ export class LoginComponent {
         this.isLoading=false
         this._Login.setUSerToken()
         this._router.navigate(['/home'])
+        console.log(response);
+
 
       },
       error:(err)=>{
+        this._Toastr.error(err.error.message,'Failed',{
+          closeButton:true,
+          timeOut:4000,
+          progressBar:true,
+        })
         this.isLoading=false
       }
     })
