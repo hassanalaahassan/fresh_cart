@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { LoginService } from 'src/app/Services/login.service';
@@ -16,7 +16,7 @@ export class NewPasswordComponent {
 
   reset:FormGroup=new FormGroup({
     email:new FormControl('',[RxwebValidators.email(),RxwebValidators.required()]),
-    newPassword:new FormControl('',[RxwebValidators.pattern({expression:{password:/^\w{6,}$/}}),RxwebValidators.required()]),
+    newPassword:new FormControl('',[Validators.pattern(/^\w{6,}$/),RxwebValidators.required()]),
   })
   handelReset():void{
     this._LoginService.newPassword(this.reset.value).subscribe({
