@@ -18,7 +18,9 @@ export class HttpInterInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-      this._NgxSpinnerService.show()
+      if (!request.url.includes('wishlist')) {
+        this._NgxSpinnerService.show()
+      }
 
 
     return next.handle(request).pipe(

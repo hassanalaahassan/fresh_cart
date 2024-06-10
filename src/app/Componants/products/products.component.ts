@@ -69,31 +69,50 @@ export class ProductsComponent implements OnInit {
     }
     })
   }
-  removeProductFromWishList(id:string):void{
-    this._wishList.removeFromWishList(id).subscribe({
-      next:(response)=>{
-        this.myData=response.data
-        this._wishList.userWishCount.next(response.data.length)
-        this._Toastr.warning(response.message,'removed',{
-          closeButton:true,
-          timeOut:4000,
-          progressBar:true,
-        })
-      }
-    })
-  }
-  addProductToWishList(id:string):void{
-    this._wishList.addToWishList(id).subscribe({
-      next:(response)=>{
-        this.myData=response.data
-        this._wishList.userWishCount.next(response.data.length)
-        this._Toastr.success(response.message,'Added',{
-          closeButton:true,
-          timeOut:4000,
-          progressBar:true,
-        })
-      }
-    })
-  }
+  // removeProductFromWishList(id:string):void{
+  //   this._wishList.removeFromWishList(id).subscribe({
+  //     next:(response)=>{
+  //       this.myData=response.data
+  //       this._wishList.userWishCount.next(response.data.length)
+  //       this._Toastr.warning(response.message,'removed',{
+  //         closeButton:true,
+  //         timeOut:4000,
+  //         progressBar:true,
+  //       })
+  //     }
+  //   })
+  // }
+  // addProductToWishList(id:string):void{
+  //   this._wishList.addToWishList(id).subscribe({
+  //     next:(response)=>{
+  //       this.myData=response.data
+  //       this._wishList.userWishCount.next(response.data.length)
+  //       this._Toastr.success(response.message,'Added',{
+  //         closeButton:true,
+  //         timeOut:4000,
+  //         progressBar:true,
+  //       })
+  //     }
+  //   })
+  // }
 
+  wishListProducts(id:string):void{
+    if(this.myData.includes(id)){
+      this._wishList.removeFromWishList(id).subscribe({
+        next:(response)=>{
+          this.myData=response.data
+          this._wishList.userWishCount.next(response.data.length)
+        }
+      })
+    }
+    else
+    {
+      this._wishList.addToWishList(id).subscribe({
+        next:(response)=>{
+          this.myData=response.data
+          this._wishList.userWishCount.next(response.data.length)
+        }
+      })
+    }
+  }
 }

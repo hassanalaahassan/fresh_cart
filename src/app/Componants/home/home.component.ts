@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.homeProducts()
     this.UserWishList()
+
   }
 
   homeProducts():void{
@@ -36,11 +37,12 @@ export class HomeComponent implements OnInit {
         this.allProducts=response.data;
       }
     })
+
+
   }
   addProductToCart(id:string):void{
     this._cart.addToCart(id).subscribe({
       next:(response)=>{
-
         this._cart.numberOfItems.next(response.numOfCartItems)
         this._Toster.success(response.message,'Added',{
           closeButton:true,
@@ -68,30 +70,41 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  addProductToWishList(id:string):void{
-    this._wishList.addToWishList(id).subscribe({
-      next:(response)=>{
-        this.myData=response.data
-        this._wishList.userWishCount.next(response.data.length)
-        this._Toster.success(response.message,'Added',{
-          closeButton:true,
-          timeOut:4000,
-          progressBar:true,
-        })
-      }
-    })
+
+  wishListProducts(id:string):void{
+    if(this.myData.includes(id)){
+      this._wishList.removeFromWishList(id).subscribe({
+        next:(response)=>{
+          this.myData=response.data
+          this._wishList.userWishCount.next(response.data.length)
+          this._Toster.warning(response.message,'removed',{
+            closeButton:true,
+            timeOut:4000,
+            progressBar:true,
+          })
+        }
+      })
+    }
+    else
+    {
+      this._wishList.addToWishList(id).subscribe({
+        next:(response)=>{
+          this.myData=response.data
+          this._wishList.userWishCount.next(response.data.length)
+          this._Toster.success(response.message,'Added',{
+            closeButton:true,
+            timeOut:4000,
+            progressBar:true,
+          })
+        }
+      })
+    }
   }
-  removeProductFromWishList(id:string):void{
-    this._wishList.removeFromWishList(id).subscribe({
-      next:(response)=>{
-        this.myData=response.data
-        this._wishList.userWishCount.next(response.data.length)
-        this._Toster.warning(response.message,'removed',{
-          closeButton:true,
-          timeOut:4000,
-          progressBar:true,
-        })
-      }
-    })
-  }
+
+
+
+
+
+
+
 }

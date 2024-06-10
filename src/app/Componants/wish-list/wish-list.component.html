@@ -1,33 +1,135 @@
 <div class="row g-4 my-5">
-    <div class="col-12" *ngIf="errMessage && myList.length==0">
-      <div class="alert text-center alert-danger">
-        <p class="m-0 p-0">{{errMessage}}</p>
-      </div>
-    </div>
-  <div class="col-md-2" *ngFor="let item of myList">
-    <div class="inner shadow-sm p-2">
-    <div [routerLink]="['/detailes',item._id]" class=" ">
-      <img [src]="item.imageCover" class="w-100 rounded-4" [alt]="item.title">
-      <h3 class="h5 green-text">{{item.title|splitPro}}</h3>
-      <p>{{  item.category.name }}</p>
-      <div class="d-flex justify-content-between align-items-center my-1">
-        <span class=" fw-bold">{{item.price}} EGP</span>
-        <div>
-          <i class="fa-solid fa-star reating me-1"></i>
-          <span class="text-muted">{{item.ratingsAverage}}</span>
+ <div class="col-xl-2 col-md-3 col-sm-4" *ngFor="let item of ProductList">
+
+    <div class="all-cards">
+      <div class="card">
+        <div class="image-container" [routerLink]="['/detailes',item._id]">
+          <img [src]="item.imageCover" [alt]="item.title">
+            <div class="price">${{item.price}}</div>
+        </div>
+          <label class="favorite" (click)="removeProductFromWishList(item._id)">
+            <input [checked]="this.myData.includes(item._id)" type="checkbox">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+                <path d="M12 20a1 1 0 0 1-.437-.1C11.214 19.73 3 15.671 3 9a5 5 0 0 1 8.535-3.536l.465.465.465-.465A5 5 0 0 1 21 9c0 6.646-8.212 10.728-8.562 10.9A1 1 0 0 1 12 20z"></path>
+            </svg>
+
+        </label>
+
+        <div class="content">
+            <div class="brand" [routerLink]="['/detailes',item._id]">{{item.title|splitPro}}</div>
+            <div class="product-name">{{item.category.name}}</div>
+            <div class="color-size-container" *ngIf="item.category.name != 'Electronics'">
+                <div class="colors">
+                    colors
+                    <ul class="colors-container p-0">
+                      <li class="color"><a href="#"></a> <span class="color-name">Collegiate Gold</span></li>
+                      <li class="color active"><a href="#"></a><span class="color-name">Team Navy</span></li>
+                      <li class="color"><a href="#"></a><span class="color-name">Pulse Blue</span></li>
+                      <li class="color"><a href="#"></a><span class="color-name">Pink Fusion</span></li>
+                      +2
+                  </ul>
+                </div>
+                <div class="sizes">
+                    Size
+                    <ul class="size-container p-0">
+                        <li class="size">
+                            <label class="size-radio">
+                                <input name="size" value="xs" type="radio">
+                                <span class="name">XS</span>
+                            </label>
+                        </li>
+                        <li class="size">
+                            <label class="size-radio">
+                                <input checked="" name="size" value="s" type="radio">
+                                <span class="name">S</span>
+                            </label>
+                        </li>
+                        <li class="size">
+                            <label class="size-radio">
+                                <input name="size" value="m" type="radio">
+                                <span class="name">M</span>
+                            </label>
+                        </li>
+                        <li class="size">
+                            <label class="size-radio">
+                                <input name="size" value="l" type="radio">
+                                <span class="name">L</span>
+                            </label>
+                        </li>
+                        <li class="size">
+                            <label class="size-radio">
+                                <input name="size" value="xl" type="radio">
+                                <span class="name">XL</span>
+                            </label>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="color-size-container" *ngIf="item.category.name == 'Electronics'">
+                <div class="colors d-flex flex-column">
+                    Details
+                    <span>Sold ({{item.sold}})</span>
+                    <span>Available ({{item.quantity}})</span>
+                </div>
+                <div class="sizes">
+                    Size
+                    <ul class="size-container p-0">
+                        <li class="size">
+                            <label class="size-radio">
+                                <input name="size" value="xs" type="radio">
+                                <span class="name">XS</span>
+                            </label>
+                        </li>
+                        <li class="size">
+                            <label class="size-radio">
+                                <input checked="" name="size" value="s" type="radio">
+                                <span class="name">S</span>
+                            </label>
+                        </li>
+                        <li class="size">
+                            <label class="size-radio">
+                                <input name="size" value="m" type="radio">
+                                <span class="name">M</span>
+                            </label>
+                        </li>
+                        <li class="size">
+                            <label class="size-radio">
+                                <input name="size" value="l" type="radio">
+                                <span class="name">L</span>
+                            </label>
+                        </li>
+                        <li class="size">
+                            <label class="size-radio">
+                                <input name="size" value="xl" type="radio">
+                                <span class="name">XL</span>
+                            </label>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="rating">
+                <div class="svg four-star-svg">
+                    <i class="fa-solid fa-star reating me-1"></i>
+                    <i class="fa-solid fa-star reating me-1"></i>
+                    <i class="fa-solid fa-star reating me-1"></i>
+                    <i class="fa-solid fa-star reating me-1"></i>
+                    <i class="fa-solid fa-star reating"></i>
+                </div>
+                ({{item.ratingsQuantity}})
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="buy-button button" (click)="addToCart(item._id)">ADD To Cart</button>
+            <button class="cart-button button" [routerLink]="['/detailes',item._id]">
+              <i class="fa-solid fa-circle-info"></i>
+            </button>
         </div>
       </div>
-    </div>
-    <div class="d-flex justify-content-between align-items-center">
-      <button class="main-btn me-auto w-75" (click)="addToCart(item._id)">Add To cart</button>
-      <div class="Fav ms-auto">
-        <div class="remove" (click)="removeProductFromWishList(item._id)">
-
-          <label for="remove"><i class="fa-solid fa-heart text-danger"></i></label>
-        </div>
-
-      </div>
-    </div>
     </div>
   </div>
+
+
 </div>

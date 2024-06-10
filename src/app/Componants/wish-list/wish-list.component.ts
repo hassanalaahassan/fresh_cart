@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/Services/cart.service';
-import { HomeService } from 'src/app/Services/home.service';
 import { WishlistService } from 'src/app/Services/wishlist.service';
 import { Product } from 'src/app/interfaces/product';
 
@@ -18,7 +17,7 @@ export class WishListComponent implements OnInit {
     private _Toastr:ToastrService
   ){}
 
-  myList:Product[]=[]
+  ProductList:Product[]=[]
   myData:string[]=[]
   errMessage:string=''
 
@@ -30,7 +29,7 @@ export class WishListComponent implements OnInit {
 
       this._WishlistService.getWishList().subscribe({
         next:(response)=> {
-          this.myList=response.data
+          this.ProductList=response.data
           if(response.data.length==0){
             this.errMessage ='Sorry but yor Wish List is Empty'
             console.log(this.errMessage);
@@ -71,9 +70,9 @@ export class WishListComponent implements OnInit {
         next:(response)=>{
           this.myData=response.data
           this._WishlistService.userWishCount.next(response.data.length)
-          this.update(this.myList)
+          this.update(this.ProductList)
           if(response.data.length==0){
-            this.myList=[]
+            this.ProductList=[]
             this.errMessage='Sorry but yor Wish List is Empty'
           }
           this._Toastr.warning(response.message,'removed',{
@@ -86,11 +85,11 @@ export class WishListComponent implements OnInit {
     }
 
     update(arr:Product[]):void{
-      this.myList=[]
+      this.ProductList=[]
         for (const Product of arr) {
 
           if(this.myData.includes(Product._id)){
-            this.myList.push(Product)
+            this.ProductList.push(Product)
           }
 
         }
